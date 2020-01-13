@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mission To Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="jumbotron text-center" style="background-color:aliceblue;">
+      <h1 style="color: cornflowerblue;">Mission to Mars</h1>
+      <br>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Latest Info</a></p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h1 style="color: cornflowerblue;">Latest Mars News</h1>
+        </div>
+        <hr>
+        <div class="row">
+          <h4>{{mars_data.news_title}}</h4>
+          <blockquote class="blockquote">
+            <p>{{mars_data.news_p}}</p>
+            <footer class="blockquote-footer text-right">
+              <a href="https://mars.nasa.gov/"> NASA Mars News Site</footer></a>
+          </blockquote>
+        </div>  
+        <br>  
+        <br>
+        <div class="row">
+          <div class="col-md-7">
+            <h5>Featured Mars Image</h5>
+            <img class="img-fluid" src="{{mars_data.featured_image_url}}"> 
+          </div>
+          <br>
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <h7 class="card-title" style="text-align: center;">Current Weather on Mars</h7>
+                <p class="card-text">{{mars_data.mars_weather}}</p>
+              </div>
+            </div>
+            <br>
+            <h7 style="text-align: center;">Mars Fact Table</h7>
+            <hr>
+              {{mars_data.mars_table | safe }}
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12 text-center">
+          <h5>Mars Hemispheres</h5>
+          <hr>
+        </div>
+        <div class="row">
+          {% for hemis in mars_data.hemisphere_image_urls %}
+          <div class="col-md-6">
+            <img class="fiure-img img-fluid" src="{{hemis.img_url}}">
+            <figcaption class="figure-caption"><h5>{{hemis.title}}</h5></figcaption> 
+          </div>
+          {%endfor%}
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
